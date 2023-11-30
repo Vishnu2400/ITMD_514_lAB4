@@ -11,6 +11,9 @@ function showPosition(position) {
   const longitude = position.coords.longitude;
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = ""; 
+  const showresultsDiv = document.getElementById("showresults");
+  showresultsDiv.innerHTML = `<p>Showing results at: Your place </p>`;
+
   getSunriseSunsetData(latitude, longitude);
 }
 
@@ -28,6 +31,8 @@ function searchLocation() {
 
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = ""; // Clear previous results
+  const showresultsDiv = document.getElementById("showresults");
+  showresultsDiv.innerHTML ="";
 
   const url = `https://geocode.maps.co/search?q=${encodeURIComponent(locationInput)}`;
 
@@ -35,16 +40,17 @@ function searchLocation() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-
-      console.log(data[0].lon, data[0].lat);
-
       const long = data[0].lon;
       const lati = data[0].lat;
+      var placeNamefromApi = data[0].display_name;
+      const showresultsDiv=document.getElementById("showresults");
+
+      showresultsDiv.innerHTML = `<p>Showing results at: ${placeNamefromApi}</p>`;
 
       // Call getSunriseSunsetData with latitude and longitude
       getSunriseSunsetData(lati, long);
     } catch (error) {
-      console.error(`Error fetching location data: ${error.message}`);
+      alert(`Error fetching location data: ${error.message}`);
     }
   }
 
@@ -70,10 +76,10 @@ async function getSunriseSunsetData(latitude, longitude) {
       displayResults("Today", data.results);
       displayResults("Tomorrow", data_tmrw.results);
     } else {
-      console.error("Error fetching sunrise-sunset data");
+      alert("Error fetching sunrise-sunset data");
     }
   } catch (error) {
-    console.error(`Error fetching sunrise-sunset data: ${error.message}`);
+    alert(`Error fetching sunrise-sunset data: ${error.message}`);
   }
 }
 
