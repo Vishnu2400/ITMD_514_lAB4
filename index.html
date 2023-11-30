@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunset and Sunrise Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+</head>
+<body>
+  <div id="header">
+    <h1>Solar Vista</h1>
+    <p>Chasing the Sun? Start Here..!</p>
+  </div>
+  <div id="dashboard">
+
+    <button onclick="getCurrentLocation()"><i class="fas fa-map-marker-alt"></i> Find my Location</button>
+
+    <label for="locationInput">Search Location:</label>
+
+    <input type="text" id="locationInput" placeholder="Enter a location,Pincode">
+
+    <button onclick="searchLocation()"><i class="fas fa-search"></i> Search</button>
+
+    <div id="showresults"></div>
+
+    <div id="result"></div>
+  </div>
+
+  <div id="footer">
+    Powered by <a href="https://sunrisesunset.io/" target="_blank">SunriseSunset.io</a>
+  </div>
+
+  <script src="script1.js"></script>
+</body>
+</html>
